@@ -4,6 +4,21 @@
 prometheusのexportがうまくいかない
 
 
+prometheusのexporterの設定
+ ServiceMonitor/PodMonitor の設定に誤りがある
+ServiceMonitor や PodMonitor の設定が正しくないと、Prometheus が正しいエンドポイントを収集できない場合があります。
+
+確認項目:
+selector の matchLabels が、ターゲット Service または Pod のラベルに一致しているか。
+endpoints や podMetricsEndpoints の path と port が正しいか。
+interval の設定が過度に長すぎないか。
+
+メトリクスのフィルタリング
+Prometheus の設定（scrape_configs や ServiceMonitor）でフィルタリングが行われている可能性があります。
+
+確認項目:
+metric_relabel_configs や relabel_configs でメトリクスがフィルタリングされていないか確認します。
+
 
 次に、cAdvisor コンテナにオプションを添えて起動します：
 cadvisor:
